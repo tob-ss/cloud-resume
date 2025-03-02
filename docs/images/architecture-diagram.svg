@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Background and title -->
+  <rect width="800" height="600" fill="#f8f9fa" />
+  <text x="400" y="30" font-family="Arial" font-size="20" text-anchor="middle" font-weight="bold">Cloud Resume Challenge Architecture</text>
+  
+  <!-- Legend -->
+  <rect x="600" y="50" width="20" height="20" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="630" y="65" font-family="Arial" font-size="12" text-anchor="start">Managed by Terraform (95%)</text>
+  
+  <rect x="600" y="80" width="20" height="20" fill="#ffcc80" stroke="#ef6c00" stroke-width="2" />
+  <text x="630" y="95" font-family="Arial" font-size="12" text-anchor="start">Manual Configuration (5%)</text>
+  
+  <!-- AWS Cloud Border -->
+  <rect x="50" y="50" width="700" height="480" rx="10" ry="10" fill="none" stroke="#232f3e" stroke-width="2" stroke-dasharray="5,5" />
+  <text x="100" y="70" font-family="Arial" font-size="14" font-weight="bold">AWS Cloud</text>
+  
+  <!-- User -->
+  <circle cx="100" cy="180" r="20" fill="#e1f5fe" stroke="#0288d1" stroke-width="2" />
+  <text x="100" y="230" font-family="Arial" font-size="12" text-anchor="middle">User</text>
+  
+  <!-- Frontend Components -->
+  <rect x="200" y="100" width="180" height="160" rx="5" ry="5" fill="#ebf5ff" stroke="#4285f4" stroke-width="2" />
+  <text x="290" y="120" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Frontend</text>
+  
+  <!-- Route 53 -->
+  <rect x="220" y="140" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="290" y="160" font-family="Arial" font-size="12" text-anchor="middle">Route 53</text>
+  
+  <!-- CloudFront -->
+  <rect x="220" y="180" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="290" y="200" font-family="Arial" font-size="12" text-anchor="middle">CloudFront</text>
+  
+  <!-- S3 Website -->
+  <rect x="220" y="220" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="290" y="240" font-family="Arial" font-size="12" text-anchor="middle">S3 Website Bucket</text>
+  
+  <!-- Backend Components -->
+  <rect x="440" y="100" width="180" height="160" rx="5" ry="5" fill="#f9fbe7" stroke="#4caf50" stroke-width="2" />
+  <text x="530" y="120" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Backend</text>
+  
+  <!-- API Gateway -->
+  <rect x="460" y="140" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="530" y="160" font-family="Arial" font-size="12" text-anchor="middle">API Gateway</text>
+  
+  <!-- Lambda Function -->
+  <rect x="460" y="180" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="530" y="200" font-family="Arial" font-size="12" text-anchor="middle">Lambda Function</text>
+  
+  <!-- DynamoDB -->
+  <rect x="460" y="220" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="530" y="240" font-family="Arial" font-size="12" text-anchor="middle">DynamoDB Table</text>
+  
+  <!-- CI/CD Components -->
+  <rect x="200" y="300" width="180" height="160" rx="5" ry="5" fill="#fff3e0" stroke="#ff9800" stroke-width="2" />
+  <text x="290" y="320" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">CI/CD Pipeline</text>
+  
+  <!-- GitHub Repository -->
+  <rect x="220" y="340" width="140" height="30" rx="5" ry="5" fill="#ffcc80" stroke="#ef6c00" stroke-width="2" />
+  <text x="290" y="360" font-family="Arial" font-size="12" text-anchor="middle">GitHub Repository</text>
+  
+  <!-- GitHub Actions -->
+  <rect x="220" y="380" width="140" height="30" rx="5" ry="5" fill="#ffcc80" stroke="#ef6c00" stroke-width="2" />
+  <text x="290" y="400" font-family="Arial" font-size="12" text-anchor="middle">GitHub Actions</text>
+  
+  <!-- IAM Roles -->
+  <rect x="220" y="420" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="290" y="440" font-family="Arial" font-size="12" text-anchor="middle">IAM Roles/Policies</text>
+  
+  <!-- Infrastructure Components -->
+  <rect x="440" y="300" width="180" height="160" rx="5" ry="5" fill="#e8eaf6" stroke="#3f51b5" stroke-width="2" />
+  <text x="530" y="320" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Infrastructure</text>
+  
+  <!-- Terraform State -->
+  <rect x="460" y="340" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="530" y="360" font-family="Arial" font-size="12" text-anchor="middle">S3 State Bucket</text>
+  
+  <!-- DynamoDB Lock -->
+  <rect x="460" y="380" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="530" y="400" font-family="Arial" font-size="12" text-anchor="middle">DynamoDB Lock Table</text>
+  
+  <!-- CloudWatch -->
+  <rect x="460" y="420" width="140" height="30" rx="5" ry="5" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <text x="530" y="440" font-family="Arial" font-size="12" text-anchor="middle">CloudWatch Alarms</text>
+  
+  <!-- Connection lines -->
+  <!-- User to Frontend -->
+  <line x1="120" y1="180" x2="200" y2="180" stroke="#0288d1" stroke-width="2" />
+  
+  <!-- Route 53 to CloudFront -->
+  <line x1="290" y1="170" x2="290" y2="180" stroke="#1565c0" stroke-width="2" />
+  
+  <!-- CloudFront to S3 -->
+  <line x1="290" y1="210" x2="290" y2="220" stroke="#1565c0" stroke-width="2" />
+  
+  <!-- Frontend to Backend -->
+  <line x1="380" y1="180" x2="440" y2="180" stroke="#424242" stroke-width="2" />
+  
+  <!-- API Gateway to Lambda -->
+  <line x1="530" y1="170" x2="530" y2="180" stroke="#1565c0" stroke-width="2" />
+  
+  <!-- Lambda to DynamoDB -->
+  <line x1="530" y1="210" x2="530" y2="220" stroke="#1565c0" stroke-width="2" />
+  
+  <!-- GitHub Actions to Resources (deployment) -->
+  <path d="M290,410 C290,460 400,460 400,280 C400,100 440,100 460,155" fill="none" stroke="#ef6c00" stroke-width="2" stroke-dasharray="5,5" />
+  
+  <!-- Environments -->
+  <rect x="50" y="510" width="700" height="50" rx="5" ry="5" fill="#e0f7fa" stroke="#00838f" stroke-width="2" />
+  <text x="170" y="540" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Pre-Production</text>
+  <text x="500" y="540" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Production</text>
+  <line x1="330" y1="510" x2="330" y2="560" stroke="#00838f" stroke-width="2" stroke-dasharray="5,5" />
+  
+  <!-- Terraform Coverage Summary -->
+  <path d="M50,570 L50,590 L750,590 L750,570 Z" fill="#90caf9" stroke="#1565c0" stroke-width="2" />
+  <path d="M50,570 L50,590 L85,590 L85,570 Z" fill="#ffcc80" stroke="#ef6c00" stroke-width="2" />
+  <text x="400" y="580" font-family="Arial" font-size="12" text-anchor="middle">Terraform Coverage: ~95% of Infrastructure</text>
+</svg>
