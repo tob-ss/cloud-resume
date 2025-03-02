@@ -29,7 +29,7 @@ First, I needed a reliable way to manage my infrastructure:
 
 2. **Environment Structure**
    - Organized my Terraform code with modules for reusability
-   - Used workspaces to separate my environments
+   - Used folders to separate my environments
    - Created different variable files for pre-prod and prod settings
 
 ### Phase 2: Building the Frontend Infrastructure
