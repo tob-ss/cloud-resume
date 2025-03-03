@@ -18,3 +18,10 @@ module "frontend" {
     domain_name    = var.domain_name
     hosted_zone_id = var.hosted_zone_id  # Use the hosted zone ID from variables
   }
+
+module "backend" {
+    source = "./terraform/modules/backend"
+
+    environment = var.environment
+    tags        = var.tags
+  }

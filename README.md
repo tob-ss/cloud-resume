@@ -60,92 +60,133 @@ For the frontend, I built everything in a logical sequence:
 
 ### Phase 3: Creating the Backend
 
-For the visitor counter functionality, I needed a simple backend:
+For the visitor counter functionality, I implemented a serverless backend:
 
-1. **Database**
-   - Created a DynamoDB table with a simple structure to store visit counts
-   - Kept it cost-effective with on-demand capacity
-   - Used a simple partition key structure
+1. **Lambda Function Architecture**
+   - Created a properly structured Lambda function with Node.js 20
+   - Used AWS SDK v3 for improved performance and modularity
+   - Implemented Lambda Layers to separate dependencies from function code
+   - Set up automatic dependency management with npm
 
-2. **API Creation**
-   - Built a REST API with API Gateway
-   - Set up the necessary resources and methods
-   - Added CORS configuration so my frontend JavaScript could access it
-   - Created separate stages for pre-prod and prod
+2. **Database Implementation**
+   - Created a DynamoDB table for the visitor counter with on-demand capacity
+   - Used a simple partition key structure for optimal performance
+   - Pre-populated the counter with an initial value
+   - Set up atomic counters for accurate visitor counting
 
-3. **Lambda Function**
-   - Wrote a function to handle incrementing and retrieving the visitor count
-   - Set up IAM roles with just the permissions it needed
-   - Added error handling and made sure to include logging
-   - Packaged it up so Terraform could deploy it
+3. **API Gateway Configuration**
+   - Built a modern HTTP API with API Gateway v2
+   - Configured proper CORS headers to allow browser access
+   - Set up direct Lambda integration with payload format v2.0
+   - Implemented proper error handling and status codes
 
-### Phase 4: Developing the Resume Website
+4. **Security & Permissions**
+   - Created IAM roles with least privilege access for Lambda
+   - Set up permission boundaries for all API components
+   - Added CloudWatch logging for observability
+   - Implemented proper error handling in all components
 
-Time to create the actual resume:
+### Phase 4: Frontend Integration
 
-1. **Resume Design**
-   - Created the HTML/CSS for my resume
-   - Kept the design clean and professional
+Connecting the frontend website to the backend services:
 
-2. **Adding the Counter**
-   - Wrote JavaScript to call my API and get the current count
-   - Handled any potential errors gracefully
-   - Updated the counter display on the page
-   - Added a small animation to make it more interesting
+1. **Resume Website Development**
+   - Created a clean, responsive HTML/CSS design
+   - Implemented a simple yet professional resume layout
+   - Used modern CSS for styling and layout
 
-### Phase 5: Setting Up CI/CD
+2. **API Integration**
+   - Wrote JavaScript to call the visitor counter API
+   - Implemented proper error handling and loading states
+   - Updated the counter display in real-time
+   - Added fetch API with proper CORS handling
 
-To make updates easy, I automated the deployment process:
+3. **Content Delivery**
+   - Uploaded website content to S3 using the AWS CLI
+   - Set up efficient deployment process
+   - Validated the complete end-to-end functionality
 
-1. **GitHub Repository**
-   - Organized my repo with clear folders for frontend, backend, and infrastructure
-   - Set up branch protection on main to prevent accidental changes
-   - Added AWS access secrets to GitHub securely
+### Phase 5: Production Environment Setup (Next Steps)
+
+The next phase is to replicate the pre-prod environment to production:
+
+1. **Production Infrastructure**
+   - Apply the same Terraform modules to the production environment
+   - Use environment-specific variables and settings
+   - Ensure complete isolation between environments
+   - Implement additional production-specific security measures
+
+2. **Domain Configuration**
+   - Set up the production domain with proper SSL certificates
+   - Configure production-specific DNS settings
+   - Ensure smooth user experience with proper redirects
+
+3. **Deployment Validation**
+   - Test the complete visitor flow in production
+   - Verify all components work together seamlessly
+   - Ensure proper security and performance in production
+
+### Phase 6: CI/CD Implementation (Planned)
+
+In the future, I plan to implement CI/CD to streamline updates:
+
+1. **GitHub Repository Organization**
+   - Structure the repository with clear separation of concerns
+   - Set up branch protection on main branch
+   - Implement pull request workflows for code reviews
 
 2. **GitHub Actions Workflows**
-   - Created workflows to deploy infrastructure changes
-   - Set up automated frontend builds and deployments
-   - Added steps to invalidate CloudFront cache after updates
-   - Made sure production deployments required approval
+   - Create automated workflows for infrastructure deployment
+   - Implement frontend build and deployment pipelines
+   - Add CloudFront cache invalidation steps
+   - Set up approval gates for production deployments
 
-3. **Deployment Process**
-   - Set things up to test in pre-prod first
-   - Created a promotion workflow to move changes to production
-   - Added verification steps before anything went live
+3. **Multi-Environment Strategy**
+   - Establish clear promotion path from pre-prod to production
+   - Implement automated testing before promotion
+   - Create safeguards to prevent accidental production changes
 
-### Phase 6: Security and Monitoring
+## What I've Learned So Far
 
-Finally, I made sure everything was secure and observable:
+Building this project has taught me valuable lessons about serverless architecture and infrastructure as code:
 
-1. **Security Setup**
-   - Followed the principle of least privilege for all IAM roles
-   - Created specific service roles rather than using broad permissions
-   - Regularly reviewed and updated permissions
-   - Made sure S3 buckets weren't publicly accessible except through CloudFront
+- **AWS Profile Management** - Setting up separate AWS profiles for different environments ensures clean separation of resources
+- **Remote State Management** - Properly configuring Terraform backend with S3 and DynamoDB provides reliable state storage and locking
+- **Module-Based Architecture** - Organizing Terraform code into reusable modules creates maintainable infrastructure
+- **Lambda Best Practices** - Structuring Lambda functions with proper dependency management using Lambda Layers
+- **DynamoDB Design** - Designing simple yet effective NoSQL data structures for serverless applications
+- **API Gateway Configuration** - Setting up modern HTTP APIs with proper CORS and Lambda integration
+- **Security Best Practices** - Applying least privilege principle for all IAM roles and policies
 
-2. **Monitoring**
-   - Added CloudWatch alarms for important metrics
-   - Set up logging for all services
-   - Created a simple dashboard to monitor everything in one place
-   - Added email notifications for any issues
+## Debugging Journey
 
-## What I Learned
+Throughout this project, I encountered and resolved several challenges. Here's a look at key issues and how I tackled them:
 
-Building this project taught me a lot about serverless architecture and infrastructure as code. The biggest takeaways were:
+| Issue | Debugging Approach | Solution |
+|-------|-------------------|----------|
+| **IAM Permissions for ACM** | Identified missing ACM management permissions based on API error messages | Added AmazonCertificateManagerFullAccess policy to user |
+| **Lambda Runtime Deprecation** | Error message indicated nodejs14.x runtime was no longer supported | Updated to nodejs20.x in Terraform configuration |
+| **AWS SDK Missing in Lambda** | Direct Lambda invocation via CLI revealed module import failure | Implemented Lambda Layers to properly manage dependencies with AWS SDK v3 |
+| **AWS Profile Confusion** | Used `aws sts get-caller-identity` to check actual user being used | Fixed AWS credentials configuration to use correct profile |
+| **Certificate Region Mismatch** | Analyzed CloudFront requirements and certificate errors | Added specific us-east-1 provider for ACM resources (CloudFront requirement) |
+| **API Connection Failures** | Used curl to test API directly and examined browser console errors | Fixed API endpoint URL and verified CORS configuration |
+| **Module Path References** | Examined file structure and Terraform error messages | Updated module source paths to use correct relative paths |
 
-- Serverless is amazing for projects like this - no servers to manage means less overhead
-- Terraform makes it possible to recreate the entire infrastructure reliably
-- Having separate environments is crucial for testing changes before they go live
-- CI/CD automation saves a ton of time once it's set up
+These experiences reinforced the importance of:
+- Understanding AWS service dependencies and regional requirements
+- Properly structuring serverless applications with current best practices
+- Using systematic debugging approaches with proper tools (AWS CLI, curl, etc.)
+- Implementing strong IAM policies while maintaining practicality
 
-## Future Improvements
+## Current Challenges & Next Steps
 
-There are several things I'd like to add in the future:
+As I continue to develop this project, I'm focusing on these key areas:
 
-- A simple CMS to make resume updates easier
-- More comprehensive monitoring
-- Additional security features like AWS WAF
-- Automated testing for both frontend and backend
+1. **Production Environment** - Setting up the production environment with the same infrastructure but proper isolation
+2. **Enhanced Security** - Implementing additional security measures like AWS WAF and stricter IAM policies
+3. **Monitoring & Observability** - Adding comprehensive CloudWatch dashboards and alerts
+4. **Frontend Improvements** - Enhancing the resume design and visitor counter functionality
+5. **CI/CD Pipeline** - Implementing automated deployments and testing with GitHub Actions
 
 ## Helpful Resources
 

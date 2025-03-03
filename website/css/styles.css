@@ -1,0 +1,190 @@
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --light-color: #ecf0f1;
+  --dark-color: #2c3e50;
+  --text-color: #333;
+  --link-color: #3498db;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--light-color);
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 20px;
+}
+
+h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin: 25px 0 15px 0;
+  border-bottom: 1px solid var(--secondary-color);
+  padding-bottom: 5px;
+}
+
+h3 {
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+
+.contact-info {
+  font-size: 1rem;
+  color: var(--dark-color);
+  margin-bottom: 10px;
+}
+
+.job-title {
+  font-weight: bold;
+  display: inline-block;
+}
+
+.job-date {
+  float: right;
+  color: var(--dark-color);
+}
+
+.company-location {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.company {
+  font-weight: bold;
+}
+
+.location {
+  color: var(--dark-color);
+}
+
+.experience-item {
+  margin-bottom: 25px;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+li {
+  margin-bottom: 8px;
+  position: relative;
+}
+
+li::before {
+  content: "»";
+  color: var(--secondary-color);
+  position: absolute;
+  left: -20px;
+}
+
+.visitor-counter {
+  margin-top: 50px;
+  padding: 15px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.counter-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--light-color);
+  margin-left: 5px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.project {
+  margin-bottom: 25px;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.tech-tag {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+footer {
+  margin-top: 50px;
+  text-align: center;
+  color: var(--dark-color);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--primary-color);
+  padding-top: 20px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .job-date {
+    float: none;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .company-location {
+    flex-direction: column;
+  }
+}
+
+.certification-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--secondary-color);
+  }
+
+.cert-name {
+    font-weight: bold;
+  }
+
+.cert-date {
+    color: var(--dark-color);
+  }
