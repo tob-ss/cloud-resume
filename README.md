@@ -22,36 +22,41 @@ Here's a walkthrough of how I approached building this project. I've broken it d
 
 First, I needed a reliable way to manage my infrastructure:
 
-1. **Terraform State Management**
-   - I created an S3 bucket to store the Terraform state remotely
-   - Added a DynamoDB table for state locking to prevent conflicts
-   - Set up separate backend configurations for my pre-prod and prod environments
+1. **AWS Account Structure**
+   - Set up separate AWS accounts for pre-prod and prod environments
+   - Created AWS CLI profiles for each environment
+   - Used profile-based authentication for clear separation
 
-2. **Environment Structure**
-   - Organized my Terraform code with modules for reusability
-   - Used folders to separate my environments
-   - Created different variable files for pre-prod and prod settings
+2. **Terraform State Management**
+   - Created separate S3 buckets in each account to store Terraform state remotely
+   - Added DynamoDB tables for state locking to prevent conflicts
+   - Bootstrapped the remote state infrastructure using Terraform itself
+
+3. **Environment Structure**
+   - Organized my Terraform code with reusable modules
+   - Created separate directories for pre-prod and prod environments
+   - Used environment-specific variable files for configuration
 
 ### Phase 2: Building the Frontend Infrastructure
 
-Next, I set up everything needed to serve my static resume website:
+For the frontend, I built everything in a logical sequence:
 
-1. **DNS Setup**
-   - Registered my domain in Route 53 (you could use an existing domain too)
-   - Created hosted zones and planned my subdomain strategy
-   - Set up the domains for pre-prod and production
+1. **Storage First Approach**
+   - Started with S3 buckets for hosting my resume website
+   - Configured the buckets with website hosting enabled
+   - Set up proper bucket policies to restrict direct access
 
-2. **Content Delivery**
-   - Got SSL certificates through ACM for HTTPS
+2. **Security and HTTPS**
+   - Registered a domain through Route 53 console for maximum reliability
+   - Created SSL certificates through ACM for HTTPS
+   - Set up DNS validation for the certificates
+   - Ensured certificates were in us-east-1 region for CloudFront compatibility
+
+3. **Content Delivery**
    - Created CloudFront distributions pointing to my S3 buckets
-   - Set up Origin Access Identity to keep my S3 buckets secure
-   - Configured caching settings to optimize performance
-
-3. **Static Website Storage**
-   - Created S3 buckets for hosting my resume
-   - Set proper bucket policies to work with CloudFront
-   - Enabled static website hosting features
-   - Added logging so I could track access if needed
+   - Set up Origin Access Identity for S3 bucket security
+   - Configured cache behaviors for optimal performance
+   - Pointed my domain to CloudFront via Route 53 alias records
 
 ### Phase 3: Creating the Backend
 
