@@ -1,23 +1,23 @@
  # Terraform files
-  **/.terraform/*
-  *.tfstate
-  *.tfstate.*
-  .terraformrc
-  terraform.rc
-  *.tfvars
-  *.tfvars.json
-  override.tf
-  override.tf.json
-  *_override.tf
-  *_override.tf.json
-  crash.log
-  crash.*.log
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+.terraformrc
+terraform.rc
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+crash.log
+crash.*.log
 
-  # Local .terraform directories
-  .terraform/
-  .terraform.lock.hcl
+# Local .terraform directories
+.terraform/
+.terraform.lock.hcl
 
-  # Bootstrap-specific (optional)
-  terraform/bootstrap/*/.terraform
-  terraform/bootstrap/*/terraform.tfstate
-  terraform/bootstrap/*/terraform.tfstate.backup
+# Bootstrap-specific (optional)
+terraform/bootstrap/*/.terraform
+terraform/bootstrap/*/terraform.tfstate
+terraform/bootstrap/*/terraform.tfstate.backup
